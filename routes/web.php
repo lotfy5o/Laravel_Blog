@@ -21,10 +21,7 @@ Route::controller(ThemeController::class)->name('Theme.')->group(function(){
     Route::get('/category', 'category')->name('category');
     Route::get('/contact', 'contact')->name('contact');
     Route::get('/singleBlog', 'singleBlog')->name('singleBlog');
-    // a clash will hapen with the same route (login) in the auth.php inside routes
-    // that's why we commented the get('login') and the get('register') inside auth.php
-    Route::get('/login', 'login')->name('login');
-    Route::get('/register', 'register')->name('register');
+
 });
 
 
