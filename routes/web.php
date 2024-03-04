@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SubscriberController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,13 +19,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Theme Routes
 Route::controller(ThemeController::class)->name('Theme.')->group(function(){
     Route::get('/', 'index')->name('index');
     Route::get('/category', 'category')->name('category');
     Route::get('/contact', 'contact')->name('contact');
     Route::get('/singleBlog', 'singleBlog')->name('singleBlog');
-
 });
+
+// Subscriber Routes
+Route::controller(SubscriberController::class)->name('Subscriber.')->group(function(){
+    Route::post('/subscriber/store', [SubscriberController::class, 'store'])->name('store');
+});
+
+
+// Contact Routes
+Route::post('/contacts/store', [ContactController::class, 'store'])->name('contacts.store');
 
 
 

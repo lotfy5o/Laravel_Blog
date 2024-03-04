@@ -38,22 +38,38 @@
           </div>
         </div>
         <div class="col-md-8 col-lg-9">
-          <form action="#/" class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+            @if (session('status-message'))
+                <div class="alert alert-success">
+                    {{ session('status-message') }}
+                </div>
+            @endif
+          <form action=" {{ route('contacts.store') }} " class="form-contact contact_form"  method="POST"  >
+            @csrf
             <div class="row">
               <div class="col-lg-5">
                 <div class="form-group">
-                  <input class="form-control" name="name" id="name" type="text" placeholder="Enter your name">
+                  <input class="form-control" name="name"  type="text" placeholder="Enter your name">
+                  @error('name')
+                    <span class="text-danger"> {{ $message }} </span>
+                  @enderror
+                </div>
+
+                <div class="form-group">
+                  <input class="form-control" name="email"  type="email" placeholder="Enter email address">
+                  @error('email')
+                    <span class="text-danger"> {{ $message }} </span>
+                  @enderror
                 </div>
                 <div class="form-group">
-                  <input class="form-control" name="email" id="email" type="email" placeholder="Enter email address">
+                  <input class="form-control" name="subject"  type="text" placeholder="Enter Subject">
+                  @error('subject')
+                    <span class="text-danger"> {{ $message }} </span>
+                  @enderror
                 </div>
+            </div>
+            <div class="col-lg-7">
                 <div class="form-group">
-                  <input class="form-control" name="subject" id="subject" type="text" placeholder="Enter Subject">
-                </div>
-              </div>
-              <div class="col-lg-7">
-                <div class="form-group">
-                    <textarea class="form-control different-control w-100" name="message" id="message" cols="30" rows="5" placeholder="Enter Message"></textarea>
+                    <textarea class="form-control different-control w-100" name="message"  cols="30" rows="5" placeholder="Enter Message"></textarea>
                 </div>
               </div>
             </div>
@@ -67,5 +83,5 @@
   </section>
 	<!-- ================ contact section end ================= -->
 
-  
+
 @endsection

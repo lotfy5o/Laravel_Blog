@@ -1,3 +1,8 @@
+@php
+    use App\Models\Category;
+    $headerCat = Category::take(2)->get();
+@endphp
+
 <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
@@ -16,15 +21,22 @@
             <ul class="nav navbar-nav menu_nav justify-content-center">
               <li class="nav-item @yield('home-active')"><a class="nav-link" href="{{ route('Theme.index') }}">Home</a></li>
               <li class="nav-item @yield('categories-active') submenu dropdown">
+
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Categories</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="{{ route('Theme.category') }}">Food</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('Theme.category') }}">Bussiness</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('Theme.category') }}">Travel</a></li>
-                </ul>
-              </li>
-              <li class="nav-item @yield('contacts-active')"><a class="nav-link" href="{{ route('Theme.contact') }}">Contact</a></li>
+                @if (count((array)$headerCat) > 0)
+                    <ul class="dropdown-menu">
+
+                      @foreach ($headerCat as $category )
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('Theme.category') }}">{{ $category->name }}</a>
+                        </li>
+                      @endforeach
+
+                    </ul>
+                @endif
+                </li>
+                <li class="nav-item @yield('contacts-active')"><a class="nav-link" href="{{ route('Theme.contact') }}">Contact</a></li>
             </ul>
 
             <!-- Add new blog -->
@@ -45,7 +57,6 @@
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
                             <li class="nav-item"><a class="nav-link" href="javascript:$('form').submit()">Logout</a></li>
-                            <!-- <input type="submit" value="Logout" class="nav-link"> -->
                         </form>
                     </li>
                   </ul>
