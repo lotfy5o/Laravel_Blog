@@ -1,6 +1,6 @@
 @php
     use App\Models\Category;
-    $headerCat = Category::take(2)->get();
+    $headerCat = Category::take(4)->get();
 @endphp
 
 <header class="header_area">
@@ -29,7 +29,7 @@
 
                       @foreach ($headerCat as $category )
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('Theme.category') }}">{{ $category->name }}</a>
+                            <a class="nav-link" href="{{ route('Theme.category', ['id' => $category->id]) }}">{{ $category->name }}</a>
                         </li>
                       @endforeach
 
@@ -40,27 +40,29 @@
             </ul>
 
             <!-- Add new blog -->
-            <a href="#" class="btn btn-sm btn-primary mr-4">Add New</a>
+            @if (Auth::check())
+                <a href="{{ route('blogs.create') }}" class="btn btn-sm btn-primary mr-4">Add New</a>
+            @endif
             <!-- End - Add new blog -->
 
             <ul class="nav navbar-nav navbar-right navbar-social">
                 @if (!Auth::check())
-                <a href="{{ route('register') }}" class="btn btn-sm btn-warning">Register / Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-sm btn-warning">Register / Login</a>
 
                 @else
-                <li class="nav-item submenu dropdown">
-                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                    aria-expanded="false">{{ Auth::user()->name }}</a>
-                  <ul class="dropdown-menu">
-                    <li class="nav-item"><a class="nav-link" href="blog-details.html">My Blogs</a></li>
-                    <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="post">
-                            @csrf
-                            <li class="nav-item"><a class="nav-link" href="javascript:$('form').submit()">Logout</a></li>
-                        </form>
+                    <li class="nav-item submenu dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">{{ Auth::user()->name }}</a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('blogs.my-blogs') }}">My Blogs</a></li>
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-link nav-link" >Logout</button>
+                            </form>
+                        </li>
+                    </ul>
                     </li>
-                  </ul>
-                </li>
 
                 @endif
             </ul>

@@ -1,8 +1,7 @@
 @php
     use App\Models\Category;
-    $sideCat = Category::get();
+    $sideCat = Category::take(3)->get();
 @endphp
-
 
 <div class="col-lg-4 sidebar-widgets">
               <div class="widget-wrap">
@@ -28,22 +27,22 @@
                 </form>
                 </div>
 
+                @if (count((array)$sideCat) > 0)
                 <div class="single-sidebar-widget post-category-widget">
                   <h4 class="single-sidebar-widget__title">Catgory</h4>
-                  @if (count((array)$sideCat) > 0)
-                  <ul class="cat-list mt-20">
-                  @endif
+                    <ul class="cat-list mt-20">
 
-                  @foreach ($sideCat as $category )
-                    <li>
-                        <a href="#" class="d-flex justify-content-between">
-                            <p>{{ $category->name }}</p>
-                            <p>03</p>
-                        </a>
-                    </li>
-                  @endforeach
-                  </ul>
-                </div>
+                        @foreach ($sideCat as $category )
+                            <li>
+                                <a href="{{ route('Theme.category', ['id' => $category->id]) }}" class="d-flex justify-content-between">
+                                    <p>{{ $category->name }}</p>
+                                    <p>03</p>
+                                </a>
+                            </li>
+                        @endforeach
+                        </ul>
+                    </div>
+                @endif
 
                 <div class="single-sidebar-widget popular-post-widget">
                   <h4 class="single-sidebar-widget__title">Recent Post</h4>

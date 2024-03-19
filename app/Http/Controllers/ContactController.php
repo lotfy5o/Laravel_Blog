@@ -13,7 +13,6 @@ class ContactController extends Controller
         $data = $request->validated();
         Contact::create($data);
 
-        dd($data);
         return back()->with('status-message', 'Your Message Sent Successfully');
     }
 }

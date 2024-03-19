@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\BlogController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,9 @@ use Illuminate\Support\Facades\Route;
 // Theme Routes
 Route::controller(ThemeController::class)->name('Theme.')->group(function(){
     Route::get('/', 'index')->name('index');
-    Route::get('/category', 'category')->name('category');
+    Route::get('/category/{id}', 'category')->name('category');
     Route::get('/contact', 'contact')->name('contact');
-    Route::get('/singleBlog', 'singleBlog')->name('singleBlog');
+    // Route::get('/singleBlog', 'singleBlog')->name('singleBlog');
 });
 
 // Subscriber Routes
@@ -36,7 +37,9 @@ Route::controller(SubscriberController::class)->name('Subscriber.')->group(funct
 // Contact Routes
 Route::post('/contacts/store', [ContactController::class, 'store'])->name('contacts.store');
 
-
+// Blog Routes
+Route::resource('/blogs', BlogController::class);
+Route::get('/my-blogs', [BlogController::class, 'myBlogs'])->name('blogs.my-blogs');
 
 
 
