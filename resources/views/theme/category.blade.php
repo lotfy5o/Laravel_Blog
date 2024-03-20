@@ -89,7 +89,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    @if(Illuminate\Support\Facades\Auth::check())
+
                     @if (isset($blogs) && count($blogs) > 0)
                     @foreach ($blogs as $blog )
                     <div class="single-recent-blog-post">
@@ -112,7 +112,7 @@
 
                     @endforeach
                     @endif
-                    @endif
+
 
 
 
