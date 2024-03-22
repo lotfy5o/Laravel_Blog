@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+
+    // the commented constructor is another solution for:
+    // if (Auth::check()).... inside the create function.
+
+    // public function __construct()
+    // {
+    //     $this->middleware('auth')->only('[create]');
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -62,7 +63,6 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        $blog->load('user');
         return view('theme.single-blog', compact('blog'));
     }
 
