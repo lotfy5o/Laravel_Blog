@@ -1,9 +1,8 @@
 <p align="center"><a href="" ><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-    <h2>Personal Blog</h2>
 <p align="center">
 </p>
 
-## Intro
+## Personal Blog
 This is a simple personal blog project built using the Laravel framework. It consists of three main pages: Home, Contacts, and Categories. The project also includes user authentication for secure access.
 
 
@@ -17,34 +16,39 @@ This is a simple personal blog project built using the Laravel framework. It con
 
 
 
+
 ## Project Screenshots
 
-### Home Page
-![Home Page](screenshots/home_page.png)
+https://ibb.co/tzLDpfM
+
+
+
 
 ## Setup
 
-To run this project locally, follow these steps:
- 1. Clone the Repository:
+
+- To run this project locally, follow these steps:
+
+1. Clone the Repository:
     git clone https://github.com/lotfy5o/Laravel_Blog
 
- 2. Navigate to the Project Directory:
+2. Navigate to the Project Directory:
     cd your_blog_project
 
- 3. Install Dependencies:
+3. Install Dependencies:
     composer install
 
- 4. Setup Environment:
+4. Setup Environment:
     - Copy .env.example to .env.
     - Configure your database connection details in the .env file.
 
- 5. Generate Application Key:
+5. Generate Application Key:
     php artisan key:generate
 
- 6. Run Migrations and Seed Database:
+6. Run Migrations and Seed Database:
     php artisan migrate --seed
 
- 7. Serve the Application:
+7. Serve the Application:
     php artisan serve
 
 ## Contributing
