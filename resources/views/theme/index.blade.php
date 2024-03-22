@@ -11,9 +11,9 @@
     <div class="container">
         <div class="hero-banner">
             <div class="hero-banner__content">
-                <h3>Tours & Travels</h3>
-                <h1>Amazing Places on earth</h1>
-                <h4>December 12, 2018</h4>
+                <h3>Welcome to My Blog</h3>
+                <h2>Discovering New Horizons Through Blogging</h2>
+                <h4>{{ date("F j, Y") }}</h4>
             </div>
         </div>
     </div>
